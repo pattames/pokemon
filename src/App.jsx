@@ -1,3 +1,5 @@
+import { BrowserRouter } from 'react-router-dom'
+
 import './App.css'
 
 function App() {
@@ -5,7 +7,9 @@ function App() {
 
   return (
     <>
-      <h1>React App</h1>
+      <BrowserRouter>
+        <Landing />
+      </BrowserRouter>
     </>
   )
 }
