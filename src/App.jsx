@@ -1,7 +1,11 @@
 
+
 import React, { useState } from 'react';
 import Authentication from './components mathieu/Authentification.jsx';
 import MainContent from './components mathieu/MainContent';
+import { BrowserRouter } from 'react-router-dom'
+import Landing from './components/Landing'
+import './App.css'
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -19,6 +23,9 @@ function App() {
       ) : (
         <Authentication onAuthenticate={handleAuthenticate} />
       )}
+      <BrowserRouter>
+        <Landing />
+      </BrowserRouter>
     </div>
   );
 }
