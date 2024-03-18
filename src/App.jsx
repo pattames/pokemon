@@ -18,14 +18,15 @@ function App() {
   return (
     <div>
       {authenticated ? (
-        <MainContent username={username} />
+       <BrowserRouter>
+       <MainContent/>
+       <Landing />
+       <Battle />
+     </BrowserRouter>
       ) : (
         <Authentication onAuthenticate={handleAuthenticate} />
       )}
-      <BrowserRouter>
-        <Landing />
-        <Battle />
-      </BrowserRouter>
+      
     </div>
   );
 }
