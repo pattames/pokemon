@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/pokemons", pokemon);
+app.use("/pokemon", pokemon);
 app.use("/users", user);
 
 app.get("/", (req, res) => {
