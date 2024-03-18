@@ -5,6 +5,7 @@ require("colors");
 require("dotenv").config();
 const connectDB = require("./dbinit");
 const pokemon = require("./routes/pokemonRoute");
+const user = require("./routes/userRoute");
 
 connectDB();
 
@@ -16,6 +17,7 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/pokemons", pokemon);
+app.use("/users", user);
 
 app.get("/", (req, res) => {
   res.send("Welcome to our API");
