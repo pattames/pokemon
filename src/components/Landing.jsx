@@ -12,7 +12,7 @@ function Landing() {
   const fetchData = async () => {
     const response = await fetch('https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/pokedex.json');
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
   }
 
   useEffect(() => {
