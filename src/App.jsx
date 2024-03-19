@@ -5,6 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import Landing from "./components/Landing";
 import "./App.css";
 import Battle from "./components/Battle.jsx";
+import OnePokemon from "./components mathieu/OnePokemon.jsx";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -21,6 +22,7 @@ function App() {
        <BrowserRouter>
        <MainContent/>
        <Landing />
+       <OnePokemon/>
        <Battle />
      </BrowserRouter>
       ) : (
