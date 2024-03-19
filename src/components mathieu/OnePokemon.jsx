@@ -1,11 +1,15 @@
-import React from 'react';
-import './StyleOnePokemon.css'
+import React, { useContext, useParams } from 'react';
+import '../styles/StyleOnePokemon.css'
+
 
 export default function OnePokemon() {
+
+  
   return (
     <div className='card'>
       <h2>This is One Pokemon component. Has to be a popup</h2>
       <h2>Pokemon name</h2>
+      <h2>ID : </h2>
       <img src="" alt="pokemon pic" />
       <p>Type : </p>
       <p>HP : </p>

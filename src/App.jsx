@@ -20,7 +20,7 @@ function App() {
     <div>
       {authenticated ? (
        <BrowserRouter>
-       <MainContent/>
+       <MainContent username={username}/>
        <Landing />
        <OnePokemon/>
        <Battle />
