@@ -9,8 +9,6 @@ function MyPokemons () {
 
   const { users , loading, user}  = useContext(DataContext);
 
-
-
   useEffect(() => {
     if (!loading) { // Check if loading is false before logging
       console.log('My pokemons:', users[currentUser].pokemons);

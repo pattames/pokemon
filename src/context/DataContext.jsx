@@ -9,7 +9,7 @@ export default function DataContextProvider(props) {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true); // New loading state
 
-  const getPokemon = async () => {
+  const getPokemons = async () => {
     const res = await fetch("http://localhost:8080/pokemon");
     const data = await res.json();
     // console.log(data.data);
@@ -32,7 +32,7 @@ export default function DataContextProvider(props) {
   }
 
   useEffect(() => {
-    getPokemon();
+    getPokemons();
     getUsers();
     getUser("65f9aa015807539a286fa9ca");
   }, []);
