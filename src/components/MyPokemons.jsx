@@ -25,7 +25,7 @@ function MyPokemons () {
       }, []);
   
       setPokemonsNames(pokemonNames);
-      console.log(pokemonNames);
+      // console.log(pokemonNames);
     } else {
       // If user.pokemons is not defined or empty, set an empty array
       setPokemonsNames([]);
@@ -37,6 +37,7 @@ function MyPokemons () {
       // console.log(user.pokemons);
       // console.log(pokemonName[0])
       getUserPokemonsNames();
+
     }
   }, [users, loading]); 
   if (loading) return <div>Loading...</div>;
@@ -46,6 +47,7 @@ function MyPokemons () {
       <div className={style.intro}>
       <h2>Your Pokemons</h2>
       <p>Here you will see all the pokemons you have captured</p>
+      <p className={style.counter}>You have currently: {}</p>
       </div>
       <div className={style.yourpokemons}>
         {PokemonsNames.length > 0 ? (
