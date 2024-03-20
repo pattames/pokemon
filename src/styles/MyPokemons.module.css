@@ -20,13 +20,13 @@
   justify-content: center;
   align-items: center;
   gap: 2%;
-  border: 3px solid blue;
+  /* border: 3px solid blue; */
   padding: 1%;
   margin: 1% 0 2%;
 }
 
 .pokemonContainer {
-  border: 3px solid red;
+  border: 3px solid black;
   width: 200px;
   height: 200px;
   background-color: #f0f0f0;

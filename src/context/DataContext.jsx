@@ -34,7 +34,7 @@ export default function DataContextProvider(props) {
   useEffect(() => {
     getPokemons();
     getUsers();
-    getUser("65fb6366752e11481df2560e");
+    getUser("65f9aa015807539a286fa9ca");
   }, []);
 
   return (

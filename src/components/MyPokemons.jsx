@@ -17,7 +17,7 @@ function MyPokemons () {
       const pokemonIds = user.pokemons[0].split(', ').map(id => Number(id));
       const pokemonTotal = user.pokemons[0].split(', ').length;
       const matchingPokemons = pokemon.filter(p => pokemonIds.includes(p.id));
-      console.log(PokemonsNames)
+      // console.log(PokemonsNames)
   
       // Check if each pokemon has a name and a name.english property before accessing
       const pokemonNames = matchingPokemons.reduce((acc, p) => {
@@ -39,7 +39,7 @@ function MyPokemons () {
 
   useEffect(() => {
     if (!loading) { // Check if loading is false before logging
-         console.log(user.pokemons[0]);
+        //  console.log(user.pokemons[0]);
       // console.log(pokemonName[0])
       getUserPokemonsNames();
     }
