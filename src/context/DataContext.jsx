@@ -38,7 +38,7 @@ export default function DataContextProvider(props) {
   }, []);
 
   return (
-    <DataContext.Provider value={{ users, loading, user, pokemon }}>
+    <DataContext.Provider value={{ pokemon, users, loading, user }}>
       {props.children}
     </DataContext.Provider>
   );
