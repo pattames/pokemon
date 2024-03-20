@@ -5,6 +5,7 @@ import MainContent from "./components mathieu/MainContent";
 import Landing from "./components/Landing";
 import "./App.css";
 import Battle from "./components/Battle.jsx";
+import OnePokemon from "./components mathieu/OnePokemon.jsx";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -18,12 +19,15 @@ function App() {
   return (
     <div>
       {authenticated ? (
-        <MainContent username={username} />
+       <BrowserRouter>
+       <MainContent username={username}/>
+       <Landing />
+       <OnePokemon/>
+       <Battle />
+     </BrowserRouter>
       ) : (
         <Authentication onAuthenticate={handleAuthenticate} />
       )}
-      <Landing />
-      <Battle />
     </div>
   );
 }

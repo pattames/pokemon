@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import MainContent from './MainContent';  
 
 const Authentication = ({ onAuthenticate }) => {
   const [username, setUsername] = useState('');
@@ -25,6 +26,7 @@ const Authentication = ({ onAuthenticate }) => {
         onChange={handleUsernameChange}
       />
       <button onClick={handleAuthenticate}>Submit</button>
+{/*       {username.trim() !== '' && <MainContent username={username} />}  */}
     </div>
   );
 };
