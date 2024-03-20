@@ -2,7 +2,6 @@ import { useState, useContext } from "react";
 import { DataContext } from "./context/DataContext";
 import Authentication from "./components mathieu/Authentification.jsx";
 import MainContent from "./components mathieu/MainContent";
-import { BrowserRouter } from "react-router-dom";
 import Landing from "./components/Landing";
 import "./App.css";
 import Battle from "./components/Battle.jsx";
@@ -29,7 +28,8 @@ function App() {
       ) : (
         <Authentication onAuthenticate={handleAuthenticate} />
       )}
-      
+      <Landing />
+      <Battle />
     </div>
   );
 }
