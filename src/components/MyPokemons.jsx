@@ -7,7 +7,6 @@ function MyPokemons () {
 
   const { users , loading, user, pokemon}  = useContext(DataContext);
   const [PokemonsNames, setPokemonsNames] = useState([]); 
-  const [PokemonImages, setPokemonImages] = useState([]);
   
 
   const getUserPokemonsNames = () => {
@@ -31,30 +30,7 @@ function MyPokemons () {
       // If user.pokemons is not defined or empty, set an empty array
       setPokemonsNames([]);
     }
-  };
-  const getUserPokemonImages = () => {
-    // Check if user.pokemons is defined and not empty before proceeding
-    if (user.pokemons && user.pokemons.length > 0) {
-      // Assuming user.pokemons[0] is a string like '1, 2'
-      const pokemonIds = user.pokemons[0].split(', ').map(id => Number(id));
-      const matchingPokemons = pokemon.filter(p => pokemonIds.includes(p.id));
-  
-      // Check if each pokemon has a name and a name.english property before accessing
-      const pokemonImages = matchingPokemons.reduce((acc, p) => {
-        if (p.name && p.name.english) {
-          acc.push(p.name.english);
-        }
-        return acc;
-      }, []);
-  
-      setPokemonImages(pokemonImages);
-      console.log(pokemonImages);
-    } else {
-      // If user.pokemons is not defined or empty, set an empty array
-      setPokemonImages([]);
-    }
-  };
-  
+  }; 
 
   useEffect(() => {
     if (!loading) { // Check if loading is false before logging
@@ -74,14 +50,19 @@ function MyPokemons () {
       <div className={style.yourpokemons}>
         {PokemonsNames.length > 0 ? (
           PokemonsNames.map((name, index) => (
-            <div key={index} className={style.pokemon}>
-              <h3>{name}</h3>
+            <div key={index} className={style.pokemonContainer}>
+              <h3 className={style.pokemonName}>{name}</h3>
+              <img className={style.pokemonImage} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${index + 1}.png`} alt={name} />
             </div>
           ))
         ) : (
           <p>You haven't captured any pokemon yet</p>
         )
         }
+      </div>
+      <div className={style.yourPokemonsPag}>
+        <button className={style.pagButton}>Previous</button>
+        <button className={style.pagButton}>Next</button>
       </div>
     </section>
   )
