@@ -7,6 +7,14 @@
   margin-top: 20px;
 }
 
+.counterP {
+  margin: 5% 0 1%;
+}
+
+.counter {
+  text-decoration:dotted;
+}
+
 .yourpokemons {
   display: flex;
   justify-content: center;
@@ -43,7 +51,7 @@
   gap: 2%;
   border: 3px solid green;
   padding: 1%;
-  margin: 1% 0 2%;
+  margin: 0 0 2%;
 }
 
 .pagButton {

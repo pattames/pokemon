@@ -7,13 +7,15 @@ function MyPokemons () {
 
   const { users , loading, user, pokemon}  = useContext(DataContext);
   const [PokemonsNames, setPokemonsNames] = useState([]); 
+  const [PokemonsTotal, setPokemonsTotal] = useState(0);
   
 
   const getUserPokemonsNames = () => {
     // Check if user.pokemons is defined and not empty before proceeding
-    if (user.pokemons && user.pokemons.length > 0) {
+    if (user.pokemons && user.pokemons.length > 0 && typeof user.pokemons[0] === 'string') {
       // Assuming user.pokemons[0] is a string like '1, 2'
       const pokemonIds = user.pokemons[0].split(', ').map(id => Number(id));
+      const pokemonTotal = user.pokemons[0].split(', ').length;
       const matchingPokemons = pokemon.filter(p => pokemonIds.includes(p.id));
   
       // Check if each pokemon has a name and a name.english property before accessing
@@ -25,19 +27,20 @@ function MyPokemons () {
       }, []);
   
       setPokemonsNames(pokemonNames);
-      // console.log(pokemonNames);
+      setPokemonsTotal(pokemonTotal);
+        console.log(pokemonTotal);
     } else {
       // If user.pokemons is not defined or empty, set an empty array
       setPokemonsNames([]);
+      setPokemonsTotal(0);
     }
   }; 
 
   useEffect(() => {
     if (!loading) { // Check if loading is false before logging
-      // console.log(user.pokemons);
+        // console.log(user.pokemons[0]);
       // console.log(pokemonName[0])
       getUserPokemonsNames();
-
     }
   }, [users, loading]); 
   if (loading) return <div>Loading...</div>;
@@ -47,8 +50,7 @@ function MyPokemons () {
       <div className={style.intro}>
       <h2>Your Pokemons</h2>
       <p>Here you will see all the pokemons you have captured</p>
-      <p className={style.counter}>You have currently: {}</p>
-      </div>
+      <p className={style.counterP}>You have currently:<span className={style.counter}> {PokemonsTotal} Pokemon{PokemonsTotal > 1 ? "s" : ""}</span></p>      </div>
       <div className={style.yourpokemons}>
         {PokemonsNames.length > 0 ? (
           PokemonsNames.map((name, index) => (
