@@ -61,7 +61,7 @@ function MyPokemons () {
             </div>
           ))
         ) : (
-          <p>You haven't captured any pokemon yet</p>
+          <p>You haven&apos;t captured any pokemon yet</p>
         )
         }
       </div>

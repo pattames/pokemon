@@ -6,6 +6,7 @@ import Landing from "./components/Landing";
 import "./App.css";
 import Battle from "./components/Battle.jsx";
 import OnePokemon from "./components mathieu/OnePokemon.jsx";
+import Leaderboard from "./components/Leaderboard.jsx";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -30,6 +31,7 @@ function App() {
       )}
       <Landing />
       <Battle />
+      <Leaderboard />
     </div>
   );
 }
