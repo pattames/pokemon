@@ -22,14 +22,14 @@ export default function DataContextProvider(props) {
     // console.log(data.data);
     setUsers(data.data);
     setLoading(false); // Set loading to false after users are fetched
-  }
+  };
 
   const getUser = async (id) => {
     const res = await fetch(`http://localhost:8080/users/${id}`);
     const data = await res.json();
     // console.log(data.data);
     setUser(data.data);
-  }
+  };
 
   useEffect(() => {
     getPokemons();
@@ -38,7 +38,7 @@ export default function DataContextProvider(props) {
   }, []);
 
   return (
-    <DataContext.Provider value={{ users, loading, user }}>
+    <DataContext.Provider value={{ pokemon, users, loading, user }}>
       {props.children}
     </DataContext.Provider>
   );
