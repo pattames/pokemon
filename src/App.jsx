@@ -20,12 +20,12 @@ function App() {
   return (
     <div>
       {authenticated ? (
-       <BrowserRouter>
-       <MainContent username={username}/>
-       <Landing />
-       <OnePokemon/>
-       <Battle />
-     </BrowserRouter>
+        <>
+          <MainContent username={username} />
+          <Landing />
+          <OnePokemon />
+          <Battle />
+        </>
       ) : (
         <Authentication onAuthenticate={handleAuthenticate} />
       )}
