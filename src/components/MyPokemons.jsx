@@ -28,7 +28,7 @@ function MyPokemons () {
   
       setPokemonsNames(pokemonNames);
       setPokemonsTotal(pokemonTotal);
-        console.log(pokemonTotal);
+        // console.log(pokemonTotal);
     } else {
       // If user.pokemons is not defined or empty, set an empty array
       setPokemonsNames([]);
@@ -38,7 +38,7 @@ function MyPokemons () {
 
   useEffect(() => {
     if (!loading) { // Check if loading is false before logging
-        // console.log(user.pokemons[0]);
+         console.log(user.pokemons[0]);
       // console.log(pokemonName[0])
       getUserPokemonsNames();
     }
