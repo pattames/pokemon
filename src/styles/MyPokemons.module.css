@@ -35,3 +35,21 @@
   height: 200px;
   margin: 0 auto;
 }
+
+.yourPokemonsPag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2%;
+  border: 3px solid green;
+  padding: 1%;
+  margin: 1% 0 2%;
+}
+
+.pagButton {
+  background-color: #f0f0f0;
+  border: 1px solid black;
+  padding: 5px;
+  cursor: pointer;
+  width: 100px;
+}
