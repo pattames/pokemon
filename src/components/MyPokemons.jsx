@@ -17,6 +17,7 @@ function MyPokemons () {
       const pokemonIds = user.pokemons[0].split(', ').map(id => Number(id));
       const pokemonTotal = user.pokemons[0].split(', ').length;
       const matchingPokemons = pokemon.filter(p => pokemonIds.includes(p.id));
+      console.log(PokemonsNames)
   
       // Check if each pokemon has a name and a name.english property before accessing
       const pokemonNames = matchingPokemons.reduce((acc, p) => {
