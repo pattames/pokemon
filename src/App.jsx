@@ -1,16 +1,18 @@
 import { useState, useContext } from "react";
 import { DataContext } from "./context/DataContext";
-import Authentication from "./components mathieu/Authentification.jsx";
-import MainContent from "./components mathieu/MainContent";
+import Authentication from "./components/Authentification.jsx";
+import MainContent from "./components/MainContent";
 import Landing from "./components/Landing";
+import AllPokemon from "./components/AllPokemon"
+import OnePokemon from "./components/OnePokemon.jsx";
 import "./App.css";
 import Battle from "./components/Battle.jsx";
-import OnePokemon from "./components mathieu/OnePokemon.jsx";
 import Leaderboard from "./components/Leaderboard.jsx";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [username, setUsername] = useState("");
+  const { pokemon, loading } = useContext(DataContext);
 
   const handleAuthenticate = (username) => {
     setAuthenticated(true);
@@ -24,6 +26,7 @@ function App() {
           <MainContent username={username} />
           <Landing />
           <OnePokemon />
+          <AllPokemon />
           <Battle />
         </>
       ) : (
