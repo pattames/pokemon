@@ -9,6 +9,7 @@ function MyPokemons () {
   const [PokemonsNames, setPokemonsNames] = useState([]); 
   const [PokemonsTotal, setPokemonsTotal] = useState(0);
   const [PokemonsImages, setPokemonsImages] = useState([]);
+  const [PokemonsStats, setPokemonsStats] = useState([]); // [hp, attack, defense, spAttack, spDefense, speed
   
 
   const getUserPokemonsNames = () => {
