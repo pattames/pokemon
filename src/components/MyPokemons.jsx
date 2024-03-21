@@ -8,28 +8,20 @@ function MyPokemons () {
   const { users , loading, user, pokemon}  = useContext(DataContext);
   const [PokemonsNames, setPokemonsNames] = useState([]); 
   const [PokemonsTotal, setPokemonsTotal] = useState(0);
+  const [PokemonsImages, setPokemonsImages] = useState([]);
   
 
   const getUserPokemonsNames = () => {
     // Check if user.pokemons is defined and not empty before proceeding
-    if (user.pokemons && user.pokemons.length > 0 && typeof user.pokemons[0] === 'string') {
-      // Assuming user.pokemons[0] is a string like '1, 2'
-      const pokemonIds = user.pokemons[0].split(', ').map(id => Number(id));
-      const pokemonTotal = user.pokemons[0].split(', ').length;
-      const matchingPokemons = pokemon.filter(p => pokemonIds.includes(p.id));
-      // console.log(PokemonsNames)
-  
-      // Check if each pokemon has a name and a name.english property before accessing
-      const pokemonNames = matchingPokemons.reduce((acc, p) => {
-        if (p.name && p.name.english) {
-          acc.push(p.name.english);
-        }
-        return acc;
-      }, []);
+    if (user.pokemons && user.pokemons.length > 0 ) {
+
+      const pokemonNames = user.pokemons.map((id) => pokemon[id].name.english);
+      const pokemonTotal = user.pokemons.length;
+      const pokemonImages = user.pokemons.map((id) => pokemon[id].image.hires);
   
       setPokemonsNames(pokemonNames);
       setPokemonsTotal(pokemonTotal);
-        // console.log(pokemonTotal);
+      setPokemonsImages(pokemonImages);  
     } else {
       // If user.pokemons is not defined or empty, set an empty array
       setPokemonsNames([]);
@@ -39,9 +31,9 @@ function MyPokemons () {
 
   useEffect(() => {
     if (!loading) { // Check if loading is false before logging
-        //  console.log(user.pokemons[0]);
-      // console.log(pokemonName[0])
-      getUserPokemonsNames();
+        //  console.log(PokemonsImages);
+        getUserPokemonsNames();
+        // console.log(PokemonsNames)
     }
   }, [users, loading]); 
   if (loading) return <div>Loading...</div>;
@@ -57,7 +49,7 @@ function MyPokemons () {
           PokemonsNames.map((name, index) => (
             <div key={index} className={style.pokemonContainer}>
               <h3 className={style.pokemonName}>{name}</h3>
-              <img className={style.pokemonImage} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${index + 1}.png`} alt={name} />
+              <img className={style.pokemonImage} src={PokemonsImages[index]} alt={name} />
             </div>
           ))
         ) : (

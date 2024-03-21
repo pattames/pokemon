@@ -6,7 +6,7 @@ function Leaderboard () {
 
   const { users }  = useContext(DataContext);
 
-  console.log(users)
+  // console.log(users)
 
     return (
         <section className={style.container}>
