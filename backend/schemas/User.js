@@ -9,7 +9,6 @@ const userSchema = new mongoose.Schema({
   },
   pokemons: [{
     type: Number,
-    ref: "Pokemon",
   }
   ]
 });
