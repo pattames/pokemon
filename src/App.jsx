@@ -29,9 +29,7 @@ function App() {
       ) : (
         <Authentication onAuthenticate={handleAuthenticate} />
       )}
-      <Landing />
-      <Battle />
-      <Leaderboard />
+
     </div>
   );
 }
