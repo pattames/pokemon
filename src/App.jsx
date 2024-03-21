@@ -25,6 +25,7 @@ function App() {
           <Landing />
           <OnePokemon />
           <Battle />
+          <Leaderboard />
         </>
       ) : (
         <Authentication onAuthenticate={handleAuthenticate} />
