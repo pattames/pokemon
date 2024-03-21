@@ -4,18 +4,28 @@ import { useEffect } from "react";
 import styles from "../styles/Battle.module.css";
 
 export default function Battle() {
+  //Data
   const { pokemon, loading } = useContext(DataContext);
+  //Hard coded pokemon (demo)
   const ivysaur = pokemon[0];
   const charmander = pokemon[3];
+  //Dynamic pokemon
   const [userPokemon, setUserPokemon] = useState(null);
   const [opponentPokemon, setOpponentPokemon] = useState(null);
+  //HP counters
   const [userCount, setUserCount] = useState(5);
   const [opponentCount, setOpponentCount] = useState(5);
+  //Battle colors
+  const [attackColor, setAttackColor] = useState();
+  const [defenseColor, setDefenseColor] = useState();
+  const [spAttackColor, setSpAttackColor] = useState();
+  const [spDefenseColor, setSpDefenseColor] = useState();
+  const [speedColor, setSpeedColor] = useState();
 
-  //console log without repetitions
+  //data console log without repetitions
   useEffect(() => {
     if (!loading) {
-      console.log("Data in battle component:", pokemon[1].base.Attack);
+      console.log("Data in battle component:", pokemon[0].base["Sp. Attack"]);
     }
   }, [pokemon, loading]);
 
@@ -33,16 +43,17 @@ export default function Battle() {
     }
   }, [charmander]);
 
-  //Handle click
+  //Handle click (battle rounds & winner)
   function handleClick() {
     //If userpokemon attack > opponentpokemon attack setUserCount (count - 1)
     function attackRound() {
       if (userPokemon.base.Attack >= opponentPokemon.base.Attack) {
         setOpponentCount(opponentCount - 1);
-        //aquí meter css verde para style.base
+        setAttackColor("green");
       } else {
         setUserCount(userCount - 1);
         //aquí meter css rojo para style.base
+        setAttackColor("red");
       }
     }
     //Same but for defense + 1sec delay
@@ -58,8 +69,55 @@ export default function Battle() {
     }
     defenseRound();
     //Same but for Sp Attack +2sec delay
-    function spAttackRound() {}
+    function spAttackRound() {
+      setTimeout(() => {
+        if (
+          userPokemon.base["Sp. Attack"] >= opponentPokemon.base["Sp. Attack"]
+        ) {
+          setOpponentCount((prevOpponentCount) => prevOpponentCount - 1);
+        } else {
+          setUserCount((prevUserCount) => prevUserCount - 1);
+        }
+      }, 2000);
+    }
+    spAttackRound();
+    //Same but for Sp Defense +3sec delay
+    function spDefenseRound() {
+      setTimeout(() => {
+        if (
+          userPokemon.base["Sp. Defense"] >= opponentPokemon.base["Sp. Defense"]
+        ) {
+          setOpponentCount((prevOpponentCount) => prevOpponentCount - 1);
+        } else {
+          setUserCount((prevUserCount) => prevUserCount - 1);
+        }
+      }, 3000);
+    }
+    spDefenseRound();
+    //Same but for Speed +4sec delay
+    function speedRound() {
+      setTimeout(() => {
+        if (userPokemon.base.Speed >= opponentPokemon.Speed) {
+          setOpponentCount((prevOpponentCount) => prevOpponentCount - 1);
+        } else {
+          setUserCount((prevUserCount) => prevUserCount - 1);
+        }
+      }, 4000);
+    }
+    speedRound();
+    //If (userCounter > opponentCounter), user wins
+    //Else, user looses
+    setTimeout(() => {
+      if (userCount >= opponentCount) {
+        alert("You win!");
+      } else {
+        alert("You loose :(");
+      }
+    }, 5000);
   }
+
+  //HP counter check
+  console.log(userCount, opponentCount);
 
   return (
     <div className={styles.battle_component}>
@@ -69,12 +127,14 @@ export default function Battle() {
           <h3>HP: {userCount}/5</h3>
           <h2>{userPokemon && userPokemon.name.japanese}</h2>
           <img
-            src={userPokemon && userPokemon.image.thumbnail}
+            src={userPokemon && userPokemon.image.hires}
             alt="user pokemon"
           />
         </div>
         <div className={styles.scoreboard}>
-          <div className={styles.base}>Attack</div>
+          <div className={styles.base} style={{ background: attackColor }}>
+            Attack
+          </div>
           <div className={styles.base}>Defense</div>
           <div className={styles.base}>Sp. Attack</div>
           <div className={styles.base}>Sp. Defense</div>
@@ -84,7 +144,7 @@ export default function Battle() {
           <h3>HP: {opponentCount}/5</h3>
           <h2>{opponentPokemon && opponentPokemon.name.japanese}</h2>
           <img
-            src={opponentPokemon && opponentPokemon.image.thumbnail}
+            src={opponentPokemon && opponentPokemon.image.hires}
             alt="opponent pokemon"
           />
         </div>
