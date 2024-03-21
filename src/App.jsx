@@ -17,6 +17,8 @@ function App() {
     setUsername(username);
   };
 
+  // App.jsx must be empty, because this wil render in every page
+
   return (
     <div>
       {authenticated ? (
