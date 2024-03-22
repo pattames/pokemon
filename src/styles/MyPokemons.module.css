@@ -26,10 +26,11 @@
 }
 
 .pokemonContainer {
-  border: 3px solid black;
+  /* border: 3px solid black; */
   width: 200px;
   height: 200px;
   background-color: #f0f0f0;
+  border-radius: 50%;
 }
 
 .pokemonName {
@@ -43,6 +44,7 @@
   height: 200px;
   margin: 0 auto;
   transition: 0.3s;
+  border-radius: 50%;
 }
 
 .pokemonImage:hover {
@@ -55,7 +57,7 @@
   justify-content: center;
   align-items: center;
   gap: 2%;
-  border: 3px solid green;
+  /* border: 3px solid green; */
   padding: 1%;
   margin: 0 0 2%;
 }
@@ -66,4 +68,10 @@
   padding: 5px;
   cursor: pointer;
   width: 100px;
+}
+
+.toggleButton {
+  background-color: transparent;
+  border: none;
+  margin-left: 10%;
 }

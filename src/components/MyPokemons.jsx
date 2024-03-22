@@ -2,67 +2,64 @@ import style from '../styles/MyPokemons.module.css';
 import { useState, useContext, useEffect } from 'react';
 import { DataContext } from '../context/DataContext';
 
-function MyPokemons () {
+function MyPokemons() {
+  const { loading, user, pokemon } = useContext(DataContext);
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 3;
+  const [showAll, setShowAll] = useState(false); // New state for toggle
 
-  const { users , loading, user, pokemon}  = useContext(DataContext);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [PokemonsNames, setPokemonsNames] = useState([]); 
-  const [PokemonsTotal, setPokemonsTotal] = useState(0);
-  const [PokemonsImages, setPokemonsImages] = useState([]);
-  const [PokemonsStats, setPokemonsStats] = useState([]); // [hp, attack, defense, spAttack, spDefense, speed
-
-  const getUserPokemonsNames = () => {
-    // Check if user.pokemons is defined and not empty before proceeding
-    if (user.pokemons && user.pokemons.length > 0 ) {
-
-      const pokemonNames = user.pokemons.map((id) => pokemon[id -1].name.english);
-      const pokemonTotal = user.pokemons.length;
-      const pokemonImages = user.pokemons.map((id) => pokemon[id -1].image.hires);
-  
-      setPokemonsNames(pokemonNames);
-      setPokemonsTotal(pokemonTotal);
-      setPokemonsImages(pokemonImages);  
-    } else {
-      // If user.pokemons is not defined or empty, set an empty array
-      setPokemonsNames([]);
-      setPokemonsTotal(0);
-    }
-  }; 
+  // Derived states for UI
+  const [displayedPokemons, setDisplayedPokemons] = useState([]);
 
   useEffect(() => {
-    if (!loading) { // Check if loading is false before logging
-        //  console.log(pokemon[10]);
-        getUserPokemonsNames();
-        // console.log(PokemonsNames)
+    const reversedPokemons = [...user.pokemons].reverse();
+
+    let pokemonsToDisplay;
+    if (showAll) {
+      pokemonsToDisplay = reversedPokemons.map(id => ({
+        name: pokemon[id - 1].name.english,
+        image: pokemon[id - 1].image.hires,
+      }));
+    } else {
+      const start = currentPage * itemsPerPage;
+      const end = start + itemsPerPage;
+      pokemonsToDisplay = reversedPokemons.slice(start, end).map(id => ({
+        name: pokemon[id - 1].name.english,
+        image: pokemon[id - 1].image.hires,
+      }));
     }
-  }, [users, loading]); 
+
+    setDisplayedPokemons(pokemonsToDisplay);
+  }, [user, pokemon, currentPage, showAll, loading]); // Include showAll in dependency array
+
+  const nextPage = () => setCurrentPage(current => Math.min(current + 1, Math.ceil(user.pokemons.length / itemsPerPage) - 1));
+  const prevPage = () => setCurrentPage(current => Math.max(current - 1, 0));
+  const toggleShowAll = () => setShowAll(current => !current); // Toggle function
+
   if (loading) return <div>Loading...</div>;
-  
+
   return (
     <section className={style.container}>
       <div className={style.intro}>
-      <h2>Your Pokemons</h2>
-      <p>Here you will see all the pokemons you have captured</p>
-      <p className={style.counterP}>You have currently:<span className={style.counter}> {PokemonsTotal} Pokemon{PokemonsTotal > 1 ? "s" : ""}</span></p>      </div>
-      <div className={style.yourpokemons}>
-        {user.pokemons.length > 0 ? (
-          PokemonsNames.map((name, index) => (
-            <div key={index} className={style.pokemonContainer}>
-              <h3 className={style.pokemonName}>{name}</h3>
-              <img className={style.pokemonImage} src={PokemonsImages[index]} alt={name} />
-            </div>
-          ))
-        ) : (
-          <p>You haven&apos;t captured any pokemon yet</p>
-        )
-        }
+        <h2>Your Pokemons</h2>
+        <p>Here you will see all the pokemons you have captured</p>
+        <p className={style.counterP}>You have currently:<span className={style.counter}> {user.pokemons.length} Pokemon{user.pokemons.length > 1 ? "s" : ""}</span></p>
+      </div>
+      <div className={`${style.yourpokemons} ${showAll ? style.vertical : ''}`}> {/* Apply vertical class if showAll is true */}
+        {displayedPokemons.map((pokemon, index) => (
+          <div key={index} className={style.pokemonContainer}>
+            <h3 className={style.pokemonName}>{pokemon.name}</h3>
+            <img className={style.pokemonImage} src={pokemon.image} alt={pokemon.name} />
+          </div>
+        ))}
       </div>
       <div className={style.yourPokemonsPag}>
-        <button className={style.pagButton}>Previous</button>
-        <button className={style.pagButton}>Next</button>
+        <button onClick={prevPage} disabled={currentPage <= 0 || showAll} className={style.pagButton}>Previous</button>
+        <button onClick={nextPage} disabled={(currentPage + 1) * itemsPerPage >= user.pokemons.length || showAll} className={style.pagButton}>Next</button>
+        <button onClick={toggleShowAll} className={style.toggleButton}>{showAll ? 'some' : 'all'}</button> {/* Toggle button */}
       </div>
     </section>
-  )
+  );
 }
 
-export default MyPokemons
+export default MyPokemons;
