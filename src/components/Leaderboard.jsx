@@ -6,7 +6,7 @@ function Leaderboard () {
 
   const { users }  = useContext(DataContext);
 
-  console.log(users)
+  // console.log(users)
 
     return (
         <section className={style.container}>
@@ -25,13 +25,13 @@ function Leaderboard () {
                   <h3 className={style.userName}>{user.username}</h3>
                 </div>
                 <div>
-                  <p className={style.pokemonsTotal}> {user.pokemons[0]}</p>
+                  <p className={style.pokemonsTotal}> {user.pokemons}</p>
                 </div>
                 <div>
-                  <p className={style.score}> {user.pokemons[0]}</p>
+                  <p className={style.score}> {user.pokemons}</p>
                 </div>
                 <div>
-                  <p className={style.winRation}> {user.pokemons[0]}</p>
+                  <p className={style.winRation}> {user.pokemons}</p>
                 </div>
               </div>
             ))

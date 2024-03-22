@@ -7,7 +7,9 @@ const userSchema = new mongoose.Schema({
     minLength: 2,
     maxLength: 20,
   },
-  pokemons: [
+  pokemons: [{
+    type: Number,
+  }
   ]
 });
 
