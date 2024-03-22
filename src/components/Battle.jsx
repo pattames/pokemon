@@ -22,10 +22,10 @@ export default function Battle() {
   const [spDefenseColor, setSpDefenseColor] = useState();
   const [speedColor, setSpeedColor] = useState();
 
-  //data console log without repetitions
+  //data check without repetitions
   useEffect(() => {
     if (!loading) {
-      console.log("Data in battle component:", pokemon[0].base["Sp. Attack"]);
+      console.log("Data in battle component:", pokemon[3].base.Speed);
     }
   }, [pokemon, loading]);
 
@@ -56,14 +56,16 @@ export default function Battle() {
         setAttackColor("red");
       }
     }
-    //Same but for defense + 1sec delay
     attackRound();
+    //Same but for defense + 1sec delay
     function defenseRound() {
       setTimeout(() => {
         if (userPokemon.base.Defense >= opponentPokemon.base.Defense) {
           setOpponentCount(opponentCount - 1);
+          setDefenseColor("green");
         } else {
           setUserCount(userCount - 1);
+          setDefenseColor("red");
         }
       }, 1000);
     }
@@ -75,8 +77,10 @@ export default function Battle() {
           userPokemon.base["Sp. Attack"] >= opponentPokemon.base["Sp. Attack"]
         ) {
           setOpponentCount((prevOpponentCount) => prevOpponentCount - 1);
+          setSpAttackColor("green");
         } else {
           setUserCount((prevUserCount) => prevUserCount - 1);
+          setSpAttackColor("red");
         }
       }, 2000);
     }
@@ -88,8 +92,10 @@ export default function Battle() {
           userPokemon.base["Sp. Defense"] >= opponentPokemon.base["Sp. Defense"]
         ) {
           setOpponentCount((prevOpponentCount) => prevOpponentCount - 1);
+          setSpDefenseColor("green");
         } else {
           setUserCount((prevUserCount) => prevUserCount - 1);
+          setSpDefenseColor("red");
         }
       }, 3000);
     }
@@ -97,10 +103,12 @@ export default function Battle() {
     //Same but for Speed +4sec delay
     function speedRound() {
       setTimeout(() => {
-        if (userPokemon.base.Speed >= opponentPokemon.Speed) {
+        if (userPokemon.base.Speed >= opponentPokemon.base.Speed) {
           setOpponentCount((prevOpponentCount) => prevOpponentCount - 1);
+          setSpeedColor("green");
         } else {
           setUserCount((prevUserCount) => prevUserCount - 1);
+          setSpeedColor("red");
         }
       }, 4000);
     }
@@ -113,18 +121,15 @@ export default function Battle() {
       } else {
         alert("You loose :(");
       }
-    }, 5000);
+    }, 4100);
   }
-
-  //HP counter check
-  console.log(userCount, opponentCount);
 
   return (
     <div className={styles.battle_component}>
-      <h1 className={styles.title}>Battle</h1>
+      <h1 className={styles.title}>Battlefield</h1>
       <div className={styles.battle_container}>
         <div className={styles.pokemon_box}>
-          <h3>HP: {userCount}/5</h3>
+          {/* <h3>HP: {userCount}/5</h3> */}
           <h2>{userPokemon && userPokemon.name.japanese}</h2>
           <img
             src={userPokemon && userPokemon.image.hires}
@@ -135,13 +140,21 @@ export default function Battle() {
           <div className={styles.base} style={{ background: attackColor }}>
             Attack
           </div>
-          <div className={styles.base}>Defense</div>
-          <div className={styles.base}>Sp. Attack</div>
-          <div className={styles.base}>Sp. Defense</div>
-          <div className={styles.base}>Speed</div>
+          <div className={styles.base} style={{ background: defenseColor }}>
+            Defense
+          </div>
+          <div className={styles.base} style={{ background: spAttackColor }}>
+            Sp. Attack
+          </div>
+          <div className={styles.base} style={{ background: spDefenseColor }}>
+            Sp. Defense
+          </div>
+          <div className={styles.base} style={{ background: speedColor }}>
+            Speed
+          </div>
         </div>
         <div className={styles.pokemon_box}>
-          <h3>HP: {opponentCount}/5</h3>
+          {/* <h3>HP: {opponentCount}/5</h3> */}
           <h2>{opponentPokemon && opponentPokemon.name.japanese}</h2>
           <img
             src={opponentPokemon && opponentPokemon.image.hires}
