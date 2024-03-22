@@ -27,7 +27,7 @@ function App() {
         <>
           <MainContent username={username} />
           <Landing />
-          <OnePokemon />
+          <OnePokemon /> 
           <AllPokemon />
           <Battle />
           <Leaderboard />
