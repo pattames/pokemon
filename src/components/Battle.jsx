@@ -29,6 +29,8 @@ export default function Battle() {
   useEffect(() => {
     if (selectPokemon) {
       setUserPokemon(selectPokemon);
+    } else {
+      setUserPokemon(pokemon[0]); //Render smth else here
     }
   }, [selectPokemon]);
 
