@@ -1,0 +1,17 @@
+.card {
+    border: 1px solid black;
+    margin: 10px;
+}
+
+.allPOkemon--pokemonCardSmall {
+    border: solid black 1px;
+    margin: 5px
+}
+
+
+
+.allPokemon--list{
+    display: grid;
+  grid-template-columns: repeat(6, 1fr); 
+  gap: 1rem; 
+}
