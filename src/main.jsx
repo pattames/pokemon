@@ -4,13 +4,16 @@ import App from "./App.jsx";
 import "./index.css";
 import DataContextProvider from "./context/DataContext.jsx";
 import { BrowserRouter } from "react-router-dom";
+import SelectPokeContextProvider from "./context/SelectPokeContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <DataContextProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </DataContextProvider>
+    <SelectPokeContextProvider>
+      <DataContextProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </DataContextProvider>
+    </SelectPokeContextProvider>
   </React.StrictMode>
 );
