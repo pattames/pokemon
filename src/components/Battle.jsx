@@ -2,12 +2,15 @@ import { useContext, useState } from "react";
 import { DataContext } from "../context/DataContext";
 import { useEffect } from "react";
 import styles from "../styles/Battle.module.css";
+import { SelectPokeContext } from "../context/SelectPokeContext";
 
 export default function Battle() {
   //Data
   const { pokemon, loading } = useContext(DataContext);
+  //from context hook to select poke
+  const { selectPokemon } = useContext(SelectPokeContext);
   //Hard coded pokemon (demo)
-  const ivysaur = pokemon[0];
+  // const ivysaur = pokemon[0];
   const charmander = pokemon[3];
   //Dynamic pokemon
   const [userPokemon, setUserPokemon] = useState(null);
@@ -22,19 +25,12 @@ export default function Battle() {
   const [spDefenseColor, setSpDefenseColor] = useState();
   const [speedColor, setSpeedColor] = useState();
 
-  //data check without repetitions
-  useEffect(() => {
-    if (!loading) {
-      console.log("Data in battle component:", pokemon[3].base.Speed);
-    }
-  }, [pokemon, loading]);
-
   //Set user pokemon (This setter will change)
   useEffect(() => {
-    if (ivysaur) {
-      setUserPokemon(ivysaur);
+    if (selectPokemon) {
+      setUserPokemon(selectPokemon);
     }
-  }, [ivysaur]);
+  }, [selectPokemon]);
 
   //Set opponent pokemon (This setter will change)
   useEffect(() => {
@@ -123,6 +119,13 @@ export default function Battle() {
       }
     }, 4100);
   }
+
+  //data check without repetitions
+  useEffect(() => {
+    if (!loading) {
+      console.log("Data in battle component:", userPokemon);
+    }
+  }, [pokemon, userPokemon, loading]);
 
   return (
     <div className={styles.battle_component}>
