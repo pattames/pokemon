@@ -35,6 +35,14 @@ function MyPokemons() {
       pokemonsToDisplay = reversedPokemons.slice(start, end).map((id) => ({
         name: pokemon[id - 1].name.english,
         image: pokemon[id - 1].image.hires,
+        namejapanese: pokemon[id - 1].name.japanese,
+        base: {
+          Attack: pokemon[id - 1].base.Attack,
+          Defense: pokemon[id - 1].base.Defense,
+          "Sp. Attack": pokemon[id - 1].base["Sp. Attack"],
+          "Sp. Defense": pokemon[id - 1].base["Sp. Defense"],
+          Speed: pokemon[id - 1].base.Speed,
+        },
       }));
     }
 
