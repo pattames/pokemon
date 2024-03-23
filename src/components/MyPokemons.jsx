@@ -15,11 +15,6 @@ function MyPokemons() {
   // Derived states for UI
   const [displayedPokemons, setDisplayedPokemons] = useState([]);
 
-  //Click handler for poke selection
-  const handleClick = (pokemon) => {
-    setSelectPokemon(pokemon);
-  };
-
   useEffect(() => {
     const reversedPokemons = [...user.pokemons].reverse();
 
@@ -28,6 +23,14 @@ function MyPokemons() {
       pokemonsToDisplay = reversedPokemons.map((id) => ({
         name: pokemon[id - 1].name.english,
         image: pokemon[id - 1].image.hires,
+        namejapanese: pokemon[id - 1].name.japanese,
+        base: {
+          Attack: pokemon[id - 1].base.Attack,
+          Defense: pokemon[id - 1].base.Defense,
+          "Sp. Attack": pokemon[id - 1].base["Sp. Attack"],
+          "Sp. Defense": pokemon[id - 1].base["Sp. Defense"],
+          Speed: pokemon[id - 1].base.Speed,
+        },
       }));
     } else {
       const start = currentPage * itemsPerPage;
@@ -78,7 +81,7 @@ function MyPokemons() {
           <div
             key={index}
             className={style.pokemonContainer}
-            onClick={() => handleClick(pokemon)}
+            onClick={() => setSelectPokemon(pokemon)}
           >
             <h3 className={style.pokemonName}>{pokemon.name}</h3>
             <img
