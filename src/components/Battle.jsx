@@ -29,6 +29,8 @@ export default function Battle() {
   useEffect(() => {
     if (selectPokemon) {
       setUserPokemon(selectPokemon);
+    } else {
+      setUserPokemon(pokemon[0]); //Render smth else here
     }
   }, [selectPokemon]);
 
@@ -133,11 +135,8 @@ export default function Battle() {
       <div className={styles.battle_container}>
         <div className={styles.pokemon_box}>
           {/* <h3>HP: {userCount}/5</h3> */}
-          <h2>{userPokemon && userPokemon.name.japanese}</h2>
-          <img
-            src={userPokemon && userPokemon.image.hires}
-            alt="user pokemon"
-          />
+          <h2>{userPokemon && userPokemon.namejapanese}</h2>
+          <img src={userPokemon && userPokemon.image} alt="user pokemon" />
         </div>
         <div className={styles.scoreboard}>
           <div className={styles.base} style={{ background: attackColor }}>
