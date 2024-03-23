@@ -12,7 +12,7 @@
 }
 
 .counter {
-  text-decoration:dotted;
+  text-decoration: dotted;
 }
 
 .yourpokemons {
@@ -26,11 +26,11 @@
 }
 
 .pokemonContainer {
-  /* border: 3px solid black; */
+  border: 3px solid black;
   width: 200px;
   height: 200px;
   background-color: #f0f0f0;
-  border-radius: 50%;
+  /* border-radius: 50%; */
 }
 
 .pokemonName {
@@ -44,7 +44,7 @@
   height: 200px;
   margin: 0 auto;
   transition: 0.3s;
-  border-radius: 50%;
+  /* border-radius: 50%; */
 }
 
 .pokemonImage:hover {
