@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import style from "../styles/Signup.module.css";
+
 export default function Signup({ setUser }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -36,22 +38,31 @@ export default function Signup({ setUser }) {
   };
 
   return (
-    <form className="signup" onSubmit={handleSubmit}>
-      <h3>Signup</h3>
-      <label>username:</label>
-      <input
-        type="text"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <label>password:</label>
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button>Sign in</button>
+    <div className={style.container}>
+    <form className={style.form} onSubmit={handleSubmit}>
+      <h3 className={style.title}>Signup</h3>
+      <div className={style.inputContainer}>
+        <label className={style.label}>username:</label>
+        <input
+          className={`${style.usernameInput} ${style.input}`}
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        {username }
+      </div>
+      <div className={style.inputContainer}>
+        <label className={style.label}>password:</label>
+        <input
+          className={`${style.passwordInput} ${style.input}`}
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </div>
+      <button className={style.button}>Sign up</button>
       {error && <div className="error">{error}</div>}
     </form>
+    </div>
   );
 }

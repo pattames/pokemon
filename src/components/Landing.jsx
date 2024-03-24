@@ -1,5 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 
+import style from '../styles/Auth.module.css';
+
 import { AuthContext } from '../context/authContext';
 
 import MyPokemons from './MyPokemons';
@@ -31,6 +33,7 @@ function Landing() {
   const handleAuthenticate = (username) => {
     setAuthenticated(true);
     setUsername(username);
+    setUser(JSON.parse(localStorage.getItem("user")));
   };
 
   const { token } = useContext(AuthContext);
@@ -40,7 +43,7 @@ function Landing() {
     {authenticated ? (
       <>
       <NavBar />
-      <MainContent username={username}/>
+      <MainContent username={user.username}/>
       <Battle />
       <MyPokemons />
       <AllPokemon />
@@ -48,9 +51,11 @@ function Landing() {
     </>
     ) : (
     <>
-      <Authentication onAuthenticate={handleAuthenticate} />
-      <Login setUser={setUser} />
+      {/* <Authentication onAuthenticate={handleAuthenticate} /> */}
+      <div className={style.authContainer}>
+      <Login setUser={setUser} onAuthenticate={handleAuthenticate}/>
       <Signup setUser={setUser} />
+      </div>
     </>
     )
     }
