@@ -22,8 +22,8 @@
   margin: 0 0 2%; */
 }
 
-.allPokemon--btn {
-    
+.allPokemon--list li.selected {
+  background-color: green;
 }
 
 .allPOkemon--pokemonCardSmall{

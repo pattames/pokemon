@@ -23,6 +23,7 @@ export default function AllPokemon() {
     handleRandom();
   }, []);
 
+
   return (
     <div className="card">
       <h1>Select the Pokemon you want to fight</h1>
