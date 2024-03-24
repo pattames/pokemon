@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import styles from "../styles/Battle.module.css";
 import { SelectPokeContext } from "../context/SelectPokeContext";
 
-export default function Battle() {
+function Battle() {
   //Data
   const { pokemon, loading } = useContext(DataContext);
   //from context hook to select poke
@@ -195,3 +195,6 @@ export default function Battle() {
     </>
   );
 }
+
+
+export default Battle;

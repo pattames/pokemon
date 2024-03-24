@@ -1,8 +1,10 @@
-import style from '../styles/Landing.module.css';
+import { NavLink } from "react-router-dom";
+
+import style from '../styles/NavBar.module.css';
+
 import { default as LeaderboardImg } from '../public/leaderboard-icon.svg';
 import { default as PokedexImg } from '../public/pokeball.svg';
 import { default as Pokemon_home } from '../public/pokemon_home.png';
-import { NavLink } from "react-router-dom";
 
 import { useState } from 'react';
 
@@ -18,7 +20,7 @@ function NavBar () {
       setMode('\u2600'); // If current is moon, change to sun
     }
   }
-
+  return (
 
     <nav className={style.nav}>
     <div className={style.nav_container}>
@@ -34,5 +36,6 @@ function NavBar () {
     <button onClick={handleDarkMode}className={style.darkMode}>{Mode}</button>
     </div>
   </nav>
+  );
 }
 export default NavBar;

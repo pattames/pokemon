@@ -1,17 +1,18 @@
-import { NavLink } from "react-router-dom";
-import { default as LeaderboardImg } from '../public/leaderboard-icon.svg';
-import { default as PokedexImg } from '../public/pokeball.svg';
-import { default as Pokemon_home } from '../public/pokemon_home.png';
 import { useState, useEffect, useContext } from 'react';
 
 import { AuthContext } from '../context/authContext';
 
-import UncaughtPokemons from './UncaughtPokemons';
 import MyPokemons from './MyPokemons';
 import MainContent from './MainContent';
 import NavBar from './NavBar';
+import Login from "./Login";
+import Signup from "./Signup";
+import Battle from "./Battle";
+import AllPokemon from "./AllPokemon";
+import Leaderboard from "./Leaderboard";
 
-import style from '../styles/Landing.module.css';
+
+import Authentication from "./Authentification";
 
 
 function Landing() {
@@ -37,12 +38,25 @@ function Landing() {
 
   return (
     <>
+    {authenticated ? (
+      <>
       <NavBar />
       <MainContent username={username}/>
+      <Battle />
       <MyPokemons />
-      <UncaughtPokemons />
+      <AllPokemon />
+      <Leaderboard />
     </>
-  );
+    ) : (
+    <>
+      <Authentication onAuthenticate={handleAuthenticate} />
+      <Login setUser={setUser} />
+      <Signup setUser={setUser} />
+    </>
+    )
+    }
+  </>
+  )
 }
 
 export default Landing;
