@@ -35,7 +35,6 @@ function Landing() {
 
   const { token } = useContext(AuthContext);
 
-
   return (
     <>
     {authenticated ? (
