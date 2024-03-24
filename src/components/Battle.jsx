@@ -1,8 +1,10 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { DataContext } from "../context/DataContext";
-import { useEffect } from "react";
 import styles from "../styles/Battle.module.css";
 import { SelectPokeContext } from "../context/SelectPokeContext";
+
+import GoodPokemon from "./GoodPokemon";
+import BadPokemon from "./BadPokemon";
 
 function Battle() {
   //Data
@@ -138,12 +140,15 @@ function Battle() {
   //data check without repetitions
   useEffect(() => {
     if (!loading) {
-      console.log("Data in battle component:", userPokemon, opponentPokemon);
+      // console.log("Data in battle component:", userPokemon, opponentPokemon);
     }
   }, [userPokemon, opponentPokemon, loading]);
 
   return (
     <>
+    <div className={styles.masterContainer}>
+    {/* <GoodPokemon /> */}
+    <div className={styles.battle_container}>
       {userPokemon && opponentPokemon && (
         <div className={styles.battle_component}>
           <h1 className={styles.title}>Battlefield</h1>
@@ -192,6 +197,9 @@ function Battle() {
           </div>
         </div>
       )}
+    </div>
+          {/* <BadPokemon /> */}
+          </div>
     </>
   );
 }

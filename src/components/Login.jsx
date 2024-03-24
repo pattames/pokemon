@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import style from "../styles/Login.module.css";
 
@@ -7,6 +7,20 @@ export default function Login({onAuthenticate})  {
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [storedUser, setStoredUser] = useState(null);
+
+  useEffect(() => {
+    const userData = localStorage.getItem("user");
+    if (userData) {
+      const userObj = JSON.parse(userData);
+      setStoredUser(userObj.username);
+      }
+    }, []);
+
+    const handleAutoFill = async (e) => {
+      e.preventDefault();
+      setUsername(storedUser);
+    };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -44,7 +58,8 @@ export default function Login({onAuthenticate})  {
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-        />
+          />
+          {storedUser && <button className={style.autofill} onClick={handleAutoFill}>Auto-fill</button>}
       </div>
       <div className={style.inputContainer}>
         <label className={style.label}>password:</label>

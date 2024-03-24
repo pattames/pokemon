@@ -3,8 +3,8 @@ import { useState, useContext, useEffect } from "react";
 import { DataContext } from "../context/DataContext";
 import { SelectPokeContext } from "../context/SelectPokeContext";
 
-function MyPokemons() {
-  const { loading, user, pokemon } = useContext(DataContext);
+function MyPokemons({ currentUser}) {
+  const { loading, pokemon, users } = useContext(DataContext);
   //from context hook to select poke
   const { setSelectPokemon } = useContext(SelectPokeContext);
 
@@ -38,7 +38,11 @@ function MyPokemons() {
 
 
   useEffect(() => {
-    const reversedPokemons = [...user.pokemons].reverse();
+
+    const loggedInUser = users.find(user => user.username === currentUser);
+    if (!loggedInUser) return; // If no user is found, simply return.
+    // console.log(loggedInUser)
+    const reversedPokemons = [...loggedInUser.pokemons].reverse();
 
     let pokemonsToDisplay;
     if (showAll) {
@@ -74,11 +78,12 @@ function MyPokemons() {
     }
 
     setDisplayedPokemons(pokemonsToDisplay);
-  }, [user, pokemon, currentPage, showAll, loading]); // Include showAll in dependency array
+    // console.log(pokemon)
+  }, [users, pokemon, currentPage, showAll, loading, currentUser]); 
 
   const nextPage = () =>
     setCurrentPage((current) =>
-      Math.min(current + 1, Math.ceil(user.pokemons.length / itemsPerPage) - 1)
+      Math.min(current + 1, Math.ceil(displayedPokemons.length / itemsPerPage) - 1)
     );
   const prevPage = () => setCurrentPage((current) => Math.max(current - 1, 0));
   const toggleShowAll = () => setShowAll((current) => !current); // Toggle function
@@ -86,6 +91,7 @@ function MyPokemons() {
   if (loading) return <div>Loading...</div>;
 
   return (
+    <>
     <section className={style.container}>
       <div className={style.intro}>
         <h1>Select your fighter</h1>
@@ -93,7 +99,7 @@ function MyPokemons() {
           You have currently:
           <span className={style.counter}>
             {" "}
-            {user.pokemons.length} Pokemon{user.pokemons.length > 1 ? "s" : ""}
+            {displayedPokemons.length} Pokemon{displayedPokemons.length > 1 ? "s" : ""}
           </span>
         </p>
       </div>
@@ -129,7 +135,7 @@ function MyPokemons() {
         <button
           onClick={nextPage}
           disabled={
-            (currentPage + 1) * itemsPerPage >= user.pokemons.length || showAll
+            (currentPage + 1) * itemsPerPage >= displayedPokemons.length || showAll
           }
           className={style.pagButton}
         >
@@ -141,6 +147,7 @@ function MyPokemons() {
         {/* Toggle button */}
       </div>
     </section>
+  </>
   );
 }
 

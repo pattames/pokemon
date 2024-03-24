@@ -13,12 +13,9 @@ import Battle from "./Battle";
 import AllPokemon from "./AllPokemon";
 import Leaderboard from "./Leaderboard";
 
-
 import Authentication from "./Authentification";
 
-
 function Landing() {
-
 
   const [user, setUser] = useState(null);
   const [authenticated, setAuthenticated] = useState(false);
@@ -45,7 +42,7 @@ function Landing() {
       <NavBar />
       <MainContent username={user.username}/>
       <Battle />
-      <MyPokemons />
+      <MyPokemons currentUser={user.username}/>
       <AllPokemon />
       <Leaderboard />
     </>
