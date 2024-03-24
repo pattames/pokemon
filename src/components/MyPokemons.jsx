@@ -64,8 +64,7 @@ function MyPokemons() {
   return (
     <section className={style.container}>
       <div className={style.intro}>
-        <h2>Your Pokemons</h2>
-        <p>Here you will see all the pokemons you have captured</p>
+        <h1>Select your fighter</h1>
         <p className={style.counterP}>
           You have currently:
           <span className={style.counter}>

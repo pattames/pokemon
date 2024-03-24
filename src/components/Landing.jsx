@@ -23,6 +23,7 @@ function Landing() {
     }
   }
 
+
   return (
     <>
       <nav className={style.nav}>
@@ -30,7 +31,7 @@ function Landing() {
         <NavLink to="/"><img src={Pokemon_home} className={style.navImg} /></NavLink>
         </div>
         <div className={style.pokeballContainer}>
-        <NavLink to="/pokedex"><img src={PokedexImg} className={style.pokeball}/> </NavLink>
+        <NavLink  to="/pokedex"><img src={PokedexImg} className={style.pokeball}/> </NavLink>
         </div>
         <div className={style.nav_container}>
         <NavLink to="leaderboard"><img src={LeaderboardImg} className={style.navImg}/></NavLink>

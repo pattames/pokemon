@@ -25,7 +25,7 @@ export default function AllPokemon() {
 
 
   return (
-    <div className="card">
+    <div className="card--allPokemon">
       <h1>Select the Pokemon you want to fight</h1>
       <button className="allPokemon--btn" onClick={handleRandom}>
         Show me more Pokemon
