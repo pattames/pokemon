@@ -4,7 +4,10 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  border: 3px solid black;
+  margin: 60px;
+
+  border: 3px solid black;
 }
 
 .counterP {
@@ -17,6 +20,7 @@
 
 .yourpokemons {
   display: flex;
+ 
   justify-content: center;
   align-items: center;
   gap: 2%;

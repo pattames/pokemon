@@ -5,7 +5,6 @@ import Authentication from "./components/Authentification.jsx";
 import MainContent from "./components/MainContent";
 import Landing from "./components/Landing";
 import AllPokemon from "./components/AllPokemon";
-import OnePokemon from "./components/OnePokemon.jsx";
 import "./App.css";
 import Battle from "./components/Battle.jsx";
 import Leaderboard from "./components/Leaderboard.jsx";
@@ -37,12 +36,11 @@ function App() {
   // App.jsx must be empty, because this wil render in every page
 
   return (
-    <div>
+    <div className="bodylike">
       {authenticated ? (
         <>
           <MainContent username={username} />
           <Landing />
-          <OnePokemon />
           <AllPokemon />
           <Battle />
           <Leaderboard />
