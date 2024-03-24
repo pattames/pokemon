@@ -12,6 +12,7 @@
 
 .counterP {
   margin: 5% 0 1%;
+  font-size: 1.5em;
 }
 
 .counter {
@@ -33,8 +34,7 @@
   border: 3px solid black;
   width: 200px;
   height: 200px;
-  background-color: #f0f0f0;
-  /* border-radius: 50%; */
+  /* background-color: #f0f0f0; */
 }
 
 .pokemonName {
@@ -68,14 +68,14 @@
 
 .pagButton {
   background-color: #f0f0f0;
-  border: 1px solid black;
   padding: 5px;
   cursor: pointer;
   width: 100px;
 }
 
 .toggleButton {
-  background-color: transparent;
+  background-color: white;
   border: none;
   margin-left: 10%;
+  padding: 5px 10px;
 }

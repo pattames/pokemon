@@ -8,11 +8,11 @@
   margin: 3% auto 2%;
   max-width: 700px;
   height: 100px;
+  border-radius: 3px;
 }
 
 .nav > * {
   /* border: 1px solid rgba(0, 0, 0, 0.1); */
-  /* padding: 0.5rem 1rem; */
   background-color: white;
   color: black;
   transition: 0.7s;

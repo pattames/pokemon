@@ -15,6 +15,28 @@ function MyPokemons() {
   // Derived states for UI
   const [displayedPokemons, setDisplayedPokemons] = useState([]);
 
+  const pokemonTypes = {
+    Normal: "#A8A77A",
+    Fire: "#EE8130",
+    Water: "#6390F0",
+    Electric: "#F7D02C",
+    Grass: "#7AC74C",
+    Ice: "#96D9D6",
+    Fighting: "#C22E28",
+    Poison: "#A33EA1",
+    Ground: "#E2BF65",
+    Flying: "#A98FF3",
+    Psychic: "#F95587",
+    Bug: "#A6B91A",
+    Rock: "#B6A136",
+    Ghost: "#735797",
+    Dragon: "#6F35FC",
+    Dark: "#705746",
+    Steel: "#B7B7CE",
+    Fairy: "#D685AD",
+  };
+
+
   useEffect(() => {
     const reversedPokemons = [...user.pokemons].reverse();
 
@@ -24,6 +46,7 @@ function MyPokemons() {
         name: pokemon[id - 1].name.english,
         image: pokemon[id - 1].image.hires,
         namejapanese: pokemon[id - 1].name.japanese,
+        type: pokemon[id - 1].type,
         base: {
           Attack: pokemon[id - 1].base.Attack,
           Defense: pokemon[id - 1].base.Defense,
@@ -39,6 +62,7 @@ function MyPokemons() {
         name: pokemon[id - 1].name.english,
         image: pokemon[id - 1].image.hires,
         namejapanese: pokemon[id - 1].name.japanese,
+        type: pokemon[id - 1].type,
         base: {
           Attack: pokemon[id - 1].base.Attack,
           Defense: pokemon[id - 1].base.Defense,
@@ -81,13 +105,16 @@ function MyPokemons() {
             key={index}
             className={style.pokemonContainer}
             onClick={() => setSelectPokemon(pokemon)}
-          >
+            >
             <h3 className={style.pokemonName}>{pokemon.name}</h3>
+            <div
+            style={{ backgroundColor: pokemonTypes[pokemon.type[0]] }}>
             <img
               className={style.pokemonImage}
               src={pokemon.image}
               alt={pokemon.name}
-            />
+              />
+              </div>
           </div>
         ))}
       </div>
