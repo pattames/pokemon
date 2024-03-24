@@ -24,8 +24,6 @@ function App() {
     }
   }, [user]);
 
-  // useEffect(() => {}, [])
-
   const handleAuthenticate = (username) => {
     setAuthenticated(true);
     setUsername(username);
@@ -39,8 +37,8 @@ function App() {
     <div className="bodylike">
       {authenticated ? (
         <>
-          <MainContent username={username} />
           <Landing />
+          <MainContent username={username} />
           <AllPokemon />
           <Battle />
           <Leaderboard />

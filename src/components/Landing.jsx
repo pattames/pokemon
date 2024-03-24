@@ -2,44 +2,43 @@ import { NavLink } from "react-router-dom";
 import { default as LeaderboardImg } from '../public/leaderboard-icon.svg';
 import { default as PokedexImg } from '../public/pokeball.svg';
 import { default as Pokemon_home } from '../public/pokemon_home.png';
-import { useState } from 'react';
+import { useState, useEffect, useContext } from 'react';
+
+import { AuthContext } from '../context/authContext';
 
 import UncaughtPokemons from './UncaughtPokemons';
 import MyPokemons from './MyPokemons';
+import MainContent from './MainContent';
+import NavBar from './NavBar';
 
 import style from '../styles/Landing.module.css';
 
 
 function Landing() {
 
-  const [Mode, setMode] = useState('\u2600'); // Sun Unicode symbol
 
-  const handleDarkMode = () => {
-    // Toggle between sun and moon Unicode symbols
-    if (Mode === '\u2600') {
-      setMode('\u263E'); // If current is sun, change to moon
-    } else {
-      setMode('\u2600'); // If current is moon, change to sun
+  const [user, setUser] = useState(null);
+  const [authenticated, setAuthenticated] = useState(false);
+  const [username, setUsername] = useState("");
+
+  useEffect(() => {
+    if (!user) {
+      setUser(JSON.parse(localStorage.getItem("user")));
     }
-  }
+  }, [user]);
+
+  const handleAuthenticate = (username) => {
+    setAuthenticated(true);
+    setUsername(username);
+  };
+
+  const { token } = useContext(AuthContext);
 
 
   return (
     <>
-      <nav className={style.nav}>
-        <div className={style.nav_container}>
-        <NavLink to="/"><img src={Pokemon_home} className={style.navImg} /></NavLink>
-        </div>
-        <div className={style.pokeballContainer}>
-        <NavLink  to="/pokedex"><img src={PokedexImg} className={style.pokeball}/> </NavLink>
-        </div>
-        <div className={style.nav_container}>
-        <NavLink to="leaderboard"><img src={LeaderboardImg} className={style.navImg}/></NavLink>
-        </div>
-        <div className={style.mode_container}>
-        <button onClick={handleDarkMode}className={style.darkMode}>{Mode}</button>
-        </div>
-      </nav>
+      <NavBar />
+      <MainContent username={username}/>
       <MyPokemons />
       <UncaughtPokemons />
     </>
