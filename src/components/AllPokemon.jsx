@@ -18,6 +18,12 @@ export default function AllPokemon() {
     }
   };
 
+//initial rendering on loadingggg
+  React.useEffect(() => {
+    handleRandom();
+  }, []);
+
+
   return (
     <div className="card">
       <h1>Select the Pokemon you want to fight</h1>
