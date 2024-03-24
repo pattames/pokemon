@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import MainContent from './MainContent';  
 
 const Authentication = ({ onAuthenticate }) => {

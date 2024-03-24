@@ -9,12 +9,27 @@ const {
   signupUser,
 } = require("../controllers/user");
 
+// const {
+//   getAllPokemons,
+//   getOnePokemon,
+// } = require("../controllers/pokemon");
+
 const api = express.Router();
 
-api.route("/").post(createUser).get(getAllUsers);
-api.route("/:id").get(getUser).put(updateUser);
+api.route("/")
+  .post(createUser)
+  .get(getAllUsers)
+  // .get(getAllPokemons)
+  // .get(getOnePokemon);
 
-api.route("/login").post(loginUser);
-api.route("/signup").post(signupUser);
+api.route("/:id")
+  .get(getUser)
+  .put(updateUser);
+
+api.route("/login")
+  .post(loginUser);
+
+api.route("/signup")
+.post(signupUser);
 
 module.exports = api;
