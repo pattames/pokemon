@@ -30,8 +30,9 @@ const getUser = async (req, res) => {
       error,
     });
   }
-}
+};
 
+//Get all users
 const getAllUsers = async (req, res) => {
   try {
     const users = await User.find();
@@ -45,12 +46,10 @@ const getAllUsers = async (req, res) => {
       error,
     });
   }
-}
-
-
+};
 
 module.exports = {
   createUser,
   getUser,
-  getAllUsers
+  getAllUsers,
 };
