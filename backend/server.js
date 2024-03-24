@@ -17,8 +17,7 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/pokemon", pokemon);
-app.use("/users", user); 
-app.use("/users/:id", user) 
+app.use("/users", user);
 
 app.get("/", (req, res) => {
   res.send("Welcome to our API");
