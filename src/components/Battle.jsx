@@ -29,14 +29,14 @@ function Battle() {
   //Number of rounds tracker
   const [roundsCompleted, setRoundsCompleted] = useState(0);
 
-  //Set user pokemon (This setter will change)
+  //Set user pokemon
   useEffect(() => {
     if (selectPokemon) {
       setUserPokemon(selectPokemon);
     }
   }, [selectPokemon]);
 
-  //Set opponent pokemon (This setter will change)
+  //Set opponent pokemon
   useEffect(() => {
     if (selectOpponent) {
       setOpponentPokemon(selectOpponent);
