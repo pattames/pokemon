@@ -1,6 +1,7 @@
 .container {
   display: flex;
   background-color: rgb(249, 102, 102);
+  width: 600px;
 }
 
 .form {
@@ -26,10 +27,20 @@
   padding: 10px;
   flex: 1 10 auto;
   min-width: 100px;
+  font-size: 1.1rem;
 }
 
 .usernameInput {
   /* background-color: green; */
+}
+
+.autofill {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 0 10px;
+  width: 100px;
+  font-size: 1.1rem;
 }
 
 .passwordInput {
@@ -38,4 +49,6 @@
 
 .button {
   padding: 12px 28px;
+  border-radius: 5px;
+  border: none;
 }

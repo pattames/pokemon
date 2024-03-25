@@ -1,17 +1,19 @@
-/* CSS Reset */
+:root {
+  /* Dark theme by default */
+  --background-color: black;
+  --text-color: white;
+}
 
-*, :root, html, body {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  text-decoration: none;
-  list-style: none;
+.light-mode {
+  /* Light theme overrides */
+  --background-color: white;
+  --text-color: black;
 }
 
 /* Global Styles */
 body {
   font-family: 'Roboto', sans-serif;
-  background-color: black;
-  color: white;
+  background-color: var(--background-color); /* Use var to apply CSS variable */
+  color: var(--text-color);
   line-height: 1.6;
 }

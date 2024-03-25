@@ -13,13 +13,20 @@
 
 .nav > * {
   /* border: 1px solid rgba(0, 0, 0, 0.1); */
-  background-color: white;
-  color: black;
+  background-color: transparent;
   transition: 0.7s;
   max-width: 100px;
   margin: 0 auto;
   border: 0;
   display: inline-block;
+}
+
+.button {
+  background-color: transparent;
+  border: 0;
+  font-size: 1.5rem;
+  transition: 0.7s ease-in;
+
 }
 
 .nav_container:hover {

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import style from "../styles/Signup.module.css";
 
@@ -49,7 +49,6 @@ export default function Signup({ setUser }) {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
-        {username }
       </div>
       <div className={style.inputContainer}>
         <label className={style.label}>password:</label>
