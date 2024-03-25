@@ -24,6 +24,8 @@ export default function Signup({ setUser }) {
     if (!response.ok) {
       setIsLoading(false);
       setError(data.error);
+      setUsername("");
+      setPassword("");
     }
 
     if (response.ok) {
@@ -39,29 +41,29 @@ export default function Signup({ setUser }) {
 
   return (
     <div className={style.container}>
-    <form className={style.form} onSubmit={handleSubmit}>
-      <h3 className={style.title}>Signup</h3>
-      <div className={style.inputContainer}>
-        <label className={style.label}>username:</label>
-        <input
-          className={`${style.usernameInput} ${style.input}`}
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-      </div>
-      <div className={style.inputContainer}>
-        <label className={style.label}>password:</label>
-        <input
-          className={`${style.passwordInput} ${style.input}`}
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
-      <button className={style.button}>Sign up</button>
-      {error && <div className="error">{error}</div>}
-    </form>
+      <form className={style.form} onSubmit={handleSubmit}>
+        <h3 className={style.title}>Signup</h3>
+        <div className={style.inputContainer}>
+          <label className={style.label}>username:</label>
+          <input
+            className={`${style.usernameInput} ${style.input}`}
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </div>
+        <div className={style.inputContainer}>
+          <label className={style.label}>password:</label>
+          <input
+            className={`${style.passwordInput} ${style.input}`}
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <button className={style.button}>Sign up</button>
+        {error && <div className="error">{error}</div>}
+      </form>
     </div>
   );
 }

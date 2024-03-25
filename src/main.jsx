@@ -11,7 +11,9 @@ import { ThemeProvider } from "./context/ThemeContext.jsx"; // Import your Theme
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
-      <ThemeProvider> {/* Wrap your app with ThemeProvider */}
+      <ThemeProvider>
+        {" "}
+        {/* Wrap your app with ThemeProvider */}
         <AuthContextProvider>
           <SelectPokeContextProvider>
             <DataContextProvider>
