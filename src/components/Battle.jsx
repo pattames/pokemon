@@ -146,63 +146,74 @@ function Battle() {
 
   return (
     <>
-    <div className={styles.masterContainer}>
-    {/* <GoodPokemon /> */}
-    <div className={styles.battle_container}>
-      {userPokemon && opponentPokemon && (
-        <div className={styles.battle_component}>
-          <h1 className={styles.title}>Battlefield</h1>
-          <div className={styles.battle_container}>
-            <div className={styles.pokemon_box}>
-              <h3>HP: {userCount}/5</h3>
-              <h2>{userPokemon && userPokemon.namejapanese}</h2>
-              <img src={userPokemon && userPokemon.image} alt="user pokemon" />
+      <div className={styles.masterContainer}>
+        {/* <GoodPokemon /> */}
+        <div className={styles.battle_container}>
+          {userPokemon && opponentPokemon && (
+            <div className={styles.battle_component}>
+              <h1 className={styles.title}>Battlefield</h1>
+              <div className={styles.battle_container}>
+                <div className={styles.pokemon_box}>
+                  <h3>HP: {userCount}/5</h3>
+                  <h2>{userPokemon && userPokemon.namejapanese}</h2>
+                  <img
+                    src={userPokemon && userPokemon.image}
+                    alt="user pokemon"
+                  />
+                </div>
+                <div className={styles.scoreboard}>
+                  <div
+                    className={styles.base}
+                    style={{ background: attackColor }}
+                  >
+                    Attack
+                  </div>
+                  <div
+                    className={styles.base}
+                    style={{ background: defenseColor }}
+                  >
+                    Defense
+                  </div>
+                  <div
+                    className={styles.base}
+                    style={{ background: spAttackColor }}
+                  >
+                    Sp. Attack
+                  </div>
+                  <div
+                    className={styles.base}
+                    style={{ background: spDefenseColor }}
+                  >
+                    Sp. Defense
+                  </div>
+                  <div
+                    className={styles.base}
+                    style={{ background: speedColor }}
+                  >
+                    Speed
+                  </div>
+                </div>
+                <div className={styles.pokemon_box}>
+                  <h3>HP: {opponentCount}/5</h3>
+                  <h2>{opponentPokemon && opponentPokemon.name.japanese}</h2>
+                  <img
+                    src={opponentPokemon && opponentPokemon.image.hires}
+                    alt="opponent pokemon"
+                  />
+                </div>
+              </div>
+              <div className={styles.btn_container}>
+                <button className={styles.fight_btn} onClick={handleClick}>
+                  Fight!
+                </button>
+              </div>
             </div>
-            <div className={styles.scoreboard}>
-              <div className={styles.base} style={{ background: attackColor }}>
-                Attack
-              </div>
-              <div className={styles.base} style={{ background: defenseColor }}>
-                Defense
-              </div>
-              <div
-                className={styles.base}
-                style={{ background: spAttackColor }}
-              >
-                Sp. Attack
-              </div>
-              <div
-                className={styles.base}
-                style={{ background: spDefenseColor }}
-              >
-                Sp. Defense
-              </div>
-              <div className={styles.base} style={{ background: speedColor }}>
-                Speed
-              </div>
-            </div>
-            <div className={styles.pokemon_box}>
-              <h3>HP: {opponentCount}/5</h3>
-              <h2>{opponentPokemon && opponentPokemon.name.japanese}</h2>
-              <img
-                src={opponentPokemon && opponentPokemon.image.hires}
-                alt="opponent pokemon"
-              />
-            </div>
-          </div>
-          <div className={styles.btn_container}>
-            <button className={styles.fight_btn} onClick={handleClick}>
-              Fight!
-            </button>
-          </div>
+          )}
         </div>
-      )}
-    </div>
-          {/* <BadPokemon /> */}
-          </div>
+        {/* <BadPokemon /> */}
+      </div>
     </>
   );
 }
-
 
 export default Battle;
