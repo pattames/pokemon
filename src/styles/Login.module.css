@@ -1,6 +1,7 @@
 .container {
   display: flex;
   background-color: rgb(249, 102, 102);
+  width: 600px;
 }
 
 .form {

@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import { NavLink } from "react-router-dom";
+import { useTheme } from '../context/ThemeContext';
 
 import style from '../styles/NavBar.module.css';
 
@@ -6,20 +8,14 @@ import { default as LeaderboardImg } from '../public/leaderboard-icon.svg';
 import { default as PokedexImg } from '../public/pokeball.svg';
 import { default as Pokemon_home } from '../public/pokemon_home.png';
 
-import { useState } from 'react';
 
 
-function NavBar () {
+function NavBar ({scrollToAllPokemon, scrollToLeaderboard}) {
 
-  const [Mode, setMode] = useState('\u2600'); // Sun Unicode symbol
-  const handleDarkMode = () => {
-    // Toggle between sun and moon Unicode symbols
-    if (Mode === '\u2600') {
-      setMode('\u263E'); // If current is sun, change to moon
-    } else {
-      setMode('\u2600'); // If current is moon, change to sun
-    }
-  }
+  const { theme, toggleTheme } = useTheme(); // Use theme and toggleTheme from context
+  const Mode = theme === 'dark' ? '\u2600' : '\u263E'; // Determine icon based on current theme
+
+
   return (
 
     <nav className={style.nav}>
@@ -27,13 +23,13 @@ function NavBar () {
     <NavLink to="/"><img src={Pokemon_home} className={style.navImg} /></NavLink>
     </div>
     <div className={style.pokeballContainer}>
-    <NavLink  to="/pokedex"><img src={PokedexImg} className={style.pokeball}/> </NavLink>
+    <button  onClick={scrollToAllPokemon} className={style.button}><img src={PokedexImg} className={style.pokeball}/> </button>
     </div>
     <div className={style.nav_container}>
-    <NavLink to="leaderboard"><img src={LeaderboardImg} className={style.navImg}/></NavLink>
+    <button onClick={scrollToLeaderboard} className={style.button}><img src={LeaderboardImg} className={style.navImg}/></button>
     </div>
     <div className={style.mode_container}>
-    <button onClick={handleDarkMode}className={style.darkMode}>{Mode}</button>
+    <button onClick={toggleTheme}className={style.darkMode}>{Mode}</button>
     </div>
   </nav>
   );

@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext, useRef } from 'react';
 
 import style from '../styles/Auth.module.css';
 
@@ -20,6 +20,8 @@ function Landing() {
   const [user, setUser] = useState(null);
   const [authenticated, setAuthenticated] = useState(false);
   const [username, setUsername] = useState("");
+  const allPokemonsRef = useRef(null);
+  const leaderboardRef = useRef(null);
 
   useEffect(() => {
     if (!user) {
@@ -39,12 +41,14 @@ function Landing() {
     <>
     {authenticated ? (
       <>
-      <NavBar />
+      <NavBar 
+      scrollToAllPokemon={() => allPokemonsRef.current.scrollIntoView({ behavior: 'smooth' })}
+      scrollToLeaderboard={() => leaderboardRef.current.scrollIntoView({ behavior: 'smooth'})} />
       <MainContent username={user.username}/>
       <Battle />
       <MyPokemons currentUser={user.username}/>
-      <AllPokemon />
-      <Leaderboard />
+      <div ref={allPokemonsRef}><AllPokemon /></div>
+      <div ref={leaderboardRef}><Leaderboard /></div>
     </>
     ) : (
     <>
