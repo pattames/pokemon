@@ -32,10 +32,15 @@ userSchema.statics.signup = async function (username, password) {
     throw Error("All fields must be filled");
   }
 
-  if (!validator.isStrongPassword(password)) {
-    throw Error(
-      "Make sure to use at least 8 characters, one upper case, one lower case, a number and a symbol"
-    );
+  // if (!validator.isStrongPassword(password)) {
+  //   throw Error(
+  //     "Make sure to use at least 8 characters, one upper case, one lower case, a number and a symbol"
+  //   );
+  // }
+
+  const hasLettersAndNumbers = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]+$/.test(password);
+  if (!hasLettersAndNumbers) {
+    throw Error("Password must contain both letters and numbers.");
   }
 
   const salt = await bcrypt.genSalt(10);
