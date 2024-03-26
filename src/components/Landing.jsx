@@ -1,12 +1,12 @@
-import { useState, useEffect, useContext, useRef } from 'react';
+import { useState, useEffect, useContext, useRef } from "react";
 
-import style from '../styles/Auth.module.css';
+import style from "../styles/Auth.module.css";
 
-import { AuthContext } from '../context/authContext';
+import { AuthContext } from "../context/authContext";
 
-import MyPokemons from './MyPokemons';
-import MainContent from './MainContent';
-import NavBar from './NavBar';
+import MyPokemons from "./MyPokemons";
+import MainContent from "./MainContent";
+import NavBar from "./NavBar";
 import Login from "./Login";
 import Signup from "./Signup";
 import Battle from "./Battle";
@@ -16,7 +16,6 @@ import Leaderboard from "./Leaderboard";
 import Authentication from "./Authentification";
 
 function Landing() {
-
   const [user, setUser] = useState(null);
   const [authenticated, setAuthenticated] = useState(false);
   const [username, setUsername] = useState("");
@@ -43,29 +42,37 @@ function Landing() {
 
   return (
     <>
-    {authenticated ? (
-      <>
-      <NavBar 
-      scrollToAllPokemon={() => allPokemonsRef.current.scrollIntoView({ behavior: 'smooth' })}
-      scrollToLeaderboard={() => leaderboardRef.current.scrollIntoView({ behavior: 'smooth'})} />
-      <MainContent username={user.username}/>
-      <Battle />
-      <MyPokemons currentUser={user.username}/>
-      <div ref={allPokemonsRef}><AllPokemon /></div>
-      <div ref={leaderboardRef}><Leaderboard /></div>
+      {authenticated ? (
+        <>
+          <NavBar
+            scrollToAllPokemon={() =>
+              allPokemonsRef.current.scrollIntoView({ behavior: "smooth" })
+            }
+            scrollToLeaderboard={() =>
+              leaderboardRef.current.scrollIntoView({ behavior: "smooth" })
+            }
+          />
+          <MainContent username={user.username} />
+          <MyPokemons currentUser={user.username} />
+          <div ref={allPokemonsRef}>
+            <AllPokemon />
+          </div>
+          <Battle user={user} setUser={setUser} />
+          <div ref={leaderboardRef}>
+            <Leaderboard />
+          </div>
+        </>
+      ) : (
+        <>
+          {/* <Authentication onAuthenticate={handleAuthenticate} /> */}
+          <div className={style.authContainer}>
+            <Login setUser={setUser} onAuthenticate={handleAuthenticate} />
+            <Signup setUser={setUser} />
+          </div>
+        </>
+      )}
     </>
-    ) : (
-    <>
-      {/* <Authentication onAuthenticate={handleAuthenticate} /> */}
-      <div className={style.authContainer}>
-      <Login setUser={setUser} onAuthenticate={handleAuthenticate}/>
-      <Signup setUser={setUser} />
-      </div>
-    </>
-    )
-    }
-  </>
-  )
+  );
 }
 
 export default Landing;

@@ -18,11 +18,12 @@ export default function AllPokemon() {
     }
   };
 
-//initial rendering on loadingggg
+  //initial rendering on loadingggg
   React.useEffect(() => {
     handleRandom();
   }, []);
 
+  // console.log(randomPokemon);
 
   return (
     <div className="card--allPokemon">
@@ -37,24 +38,26 @@ export default function AllPokemon() {
           {randomPokemon.map(
             (
               poke //radomize the mapping
-            ) => (
-              <li
-                key={poke.id}
-                className="allPOkemon--pokemonCardSmall"
-                onClick={() => setSelectOpponent(poke)}
-              >
-                <div className="allPokemon--card">
-                  <h3>{poke.name.english}</h3>
-                  <h4>{poke.name.chinese}</h4>
-                  <p>ID: {poke.id}</p>
-                </div>
-                <img
-                  className="allPokemon--img"
-                  src={`https://raw.githubusercontent.com/Purukitto/pokemon-data.json/master/images/pokedex/hires/${poke.id}.png`}
-                  alt={`Pokemon ${poke.name.english}`}
-                />
-              </li>
-            )
+            ) =>
+              poke.image &&
+              poke.base && (
+                <li
+                  key={poke.id}
+                  className="allPOkemon--pokemonCardSmall"
+                  onClick={() => setSelectOpponent(poke)}
+                >
+                  <div className="allPokemon--card">
+                    <h3>{poke.name.english}</h3>
+                    <h4>{poke.name.chinese}</h4>
+                    <p>ID: {poke.id}</p>
+                  </div>
+                  <img
+                    className="allPokemon--img"
+                    src={poke.image.hires}
+                    alt={`Pokemon ${poke.name.english}`}
+                  />
+                </li>
+              )
           )}
         </ul>
       )}
