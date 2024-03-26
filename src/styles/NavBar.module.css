@@ -72,3 +72,10 @@
 .pokeballContainer:hover::after {
   transition: content 0.5s;
 }
+
+.logoutImg, .logout_container {
+  background-color: white;
+  border: none;
+  color: white;
+  width: 60px;
+}
