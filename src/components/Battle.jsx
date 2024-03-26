@@ -28,6 +28,14 @@ function Battle() {
   const [speedColor, setSpeedColor] = useState();
   //Number of rounds tracker
   const [roundsCompleted, setRoundsCompleted] = useState(0);
+  //User
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    if (!user) {
+      setUser(JSON.parse(localStorage.getItem("user")));
+    }
+  }, [user]);
 
   //Set user pokemon
   useEffect(() => {
@@ -128,21 +136,27 @@ function Battle() {
     if (roundsCompleted === 5) {
       setTimeout(() => {
         if (userCount > opponentCount) {
-          alert("You win!");
+          // Update the user
+          const updatedUser = {
+            ...user,
+            pokemons: [...user.pokemons, String(opponentPokemon.id)],
+          };
+          setUser(updatedUser);
+          alert("You win! New pokemon added");
         } else {
           alert("You lose :(");
         }
+        setRoundsCompleted(0); // Reset rounds for next battle
       }, 100);
-      setRoundsCompleted(0); // Reset rounds for next battle
     }
-  }, [roundsCompleted, userCount, opponentCount]);
+  }, [roundsCompleted, userCount, opponentCount, user, setUser]);
 
   //data check without repetitions
   useEffect(() => {
     if (!loading) {
-      // console.log("Data in battle component:", userPokemon, opponentPokemon);
+      console.log("Data in battle component:", user);
     }
-  }, [userPokemon, opponentPokemon, loading]);
+  }, [userPokemon, opponentPokemon, loading, user]);
 
   return (
     <>

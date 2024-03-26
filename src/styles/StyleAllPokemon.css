@@ -1,28 +1,25 @@
 .card--allPokemon {
-    border: 3px solid black;
-    margin: 60px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  border: 3px solid black;
+  margin: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-h1{
+h1 {
   font-size: 32px;
 }
 
-
 .allPOkemon--pokemonCardSmall {
-    border: solid black 3px;
-    margin: 5px
+  border: solid black 3px;
+  margin: 5px;
 }
 
-
-
-.allPokemon--list{
-    display: grid;
-  grid-template-columns: repeat(4, 1fr); 
-  gap: 1rem; 
-/*   display: flex;
+.allPokemon--list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  /*   display: flex;
   justify-content: center;
   align-items: center;
   gap: 2%;
@@ -34,25 +31,24 @@ h1{
   background-color: green;
 }
 
-.allPOkemon--pokemonCardSmall{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+.allPOkemon--pokemonCardSmall {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
-.allPokemon--img{
-    width: 200px;
-    height: 200px;
-    margin: 0 auto;
-    transition: 0.3s;
-    border-radius: 50%; 
+.allPokemon--img {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  transition: 0.3s;
+  /* border-radius: 50%;  */
 }
 
 .allPokemon--img:hover {
-    cursor: pointer;
-    margin-top: -30px;
-
-  }
+  cursor: pointer;
+  margin-top: -30px;
+}
 
 .allPokemon--btn {
   width: 200px;
