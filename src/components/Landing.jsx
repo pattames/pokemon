@@ -27,6 +27,10 @@ function Landing() {
     if (!user) {
       setUser(JSON.parse(localStorage.getItem("user")));
     }
+    const userData = localStorage.getItem("user");
+    if (userData) {
+      setAuthenticated(true);
+    }
   }, [user]);
 
   const handleAuthenticate = (username) => {
