@@ -15,7 +15,7 @@ const loginUser = async (req, res) => {
     const user = await User.login(username, password);
     const token = createToken(user._id);
 
-    res.status(200).json({ username, token });
+    res.status(200).json({ username, token, pokemons: user.pokemons });
     console.log(`${username} logged in successfully!`)
   } catch (error) {
     res.status(400).json({ error: error.message });
