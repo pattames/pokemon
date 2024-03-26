@@ -9,7 +9,7 @@ const createToken = (id) => {
 
 //login user
 const loginUser = async (req, res) => {
-  const { username, password } = req.body;
+  const { username, password, pokemons } = req.body;
 
   try {
     const user = await User.login(username, password);
@@ -24,7 +24,7 @@ const loginUser = async (req, res) => {
 
 //signup user
 const signupUser = async (req, res) => {
-  const { username, password } = req.body;
+  const { username, password, pokemons } = req.body;
 
   try {
     const user = await User.signup(username, password);
