@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema({
   },
   pokemons: [
     {
-      type: Number,
+      type: String,
     },
   ],
 });
@@ -41,7 +41,9 @@ userSchema.statics.signup = async function (username, password) {
   const salt = await bcrypt.genSalt(10);
   const hash = await bcrypt.hash(password, salt);
 
-  const user = await this.create({ username, password: hash });
+  const defaultPokemons = ["1", "4", "7"];
+
+  const user = await this.create({ username, password: hash, pokemons: defaultPokemons });
 
   return user;
 };
