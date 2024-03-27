@@ -6,6 +6,8 @@ export default function SelectPokeContextProvider(props) {
   const [selectPokemon, setSelectPokemon] = useState(null);
   const [selectOpponent, setSelectOpponent] = useState(null);
 
+  const [battleCount, setBattleCount] = useState(0);
+
   return (
     <SelectPokeContext.Provider
       value={{
@@ -13,6 +15,8 @@ export default function SelectPokeContextProvider(props) {
         setSelectPokemon,
         selectOpponent,
         setSelectOpponent,
+        battleCount,
+        setBattleCount,
       }}
     >
       {props.children}

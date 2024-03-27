@@ -10,7 +10,8 @@ function Battle() {
   //Data
   const { pokemon, loading } = useContext(DataContext);
   //from context hook to select poke
-  const { selectPokemon, selectOpponent } = useContext(SelectPokeContext);
+  const { selectPokemon, selectOpponent, setBattleCount } =
+    useContext(SelectPokeContext);
   //Hard coded pokemon (demo)
   // const ivysaur = pokemon[0];
   // const charmander = pokemon[3];
@@ -129,6 +130,32 @@ function Battle() {
     speedRound();
   }
 
+  //Update the user in database
+  const updateUser = async (updatedUser) => {
+    try {
+      const response = await fetch(
+        `http://localhost:8080/users/${updatedUser._id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedUser),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to update user pokemons");
+      }
+
+      const data = await response.json();
+      console.log("Successfully updated user pokemons:", data);
+      // Optionally, update the user state or context here if necessary
+    } catch (error) {
+      console.error("Error updating user pokemons:", error);
+    }
+  };
+
   //If rounds completed === 5:
   //If (userCounter > opponentCounter), user wins
   //Else, user looses
@@ -136,27 +163,44 @@ function Battle() {
     if (roundsCompleted === 5) {
       setTimeout(() => {
         if (userCount > opponentCount) {
-          // Update the user
-          const updatedUser = {
-            ...user,
-            pokemons: [...user.pokemons, String(opponentPokemon.id)],
-          };
-          setUser(updatedUser);
-          alert("You win! New pokemon added");
+          // If user.pokemons is an array and doesn't already contain the opponent's ID
+          if (!user.pokemons.includes(String(opponentPokemon.id))) {
+            //Update user with new pokemon
+            const updatedUser = {
+              ...user,
+              pokemons: [...user.pokemons, String(opponentPokemon.id)],
+            };
+            setUser(updatedUser);
+            // Call updateUser function to update the user's pokemons on the server
+            updateUser(updatedUser);
+            alert("You win! New pokemon added");
+          }
         } else {
           alert("You lose :(");
         }
-        setRoundsCompleted(0); // Reset rounds for next battle
+        // Reset rounds for next battle
+        setRoundsCompleted(0);
+        //Reset counters
+        setUserCount(5);
+        setOpponentCount(5);
+        //Reset colors
+        setAttackColor(null);
+        setDefenseColor(null);
+        setSpAttackColor(null);
+        setSpDefenseColor(null);
+        setSpeedColor(null);
+        //Battle count +1
+        setBattleCount((prevCount) => prevCount + 1);
       }, 100);
     }
   }, [roundsCompleted, userCount, opponentCount, user, setUser]);
 
   //data check without repetitions
-  useEffect(() => {
-    if (!loading) {
-      console.log("Data in battle component:", user);
-    }
-  }, [userPokemon, opponentPokemon, loading, user]);
+  // useEffect(() => {
+  //   if (!loading) {
+  //     console.log("Data in battle component:", userCount);
+  //   }
+  // }, [userPokemon, opponentPokemon, loading, user]);
 
   return (
     <>

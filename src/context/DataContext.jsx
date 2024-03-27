@@ -30,9 +30,6 @@ export default function DataContextProvider(props) {
   //   setUser(data.data);
   // };
 
-
-
-
   useEffect(() => {
     getPokemons();
     getUsers();

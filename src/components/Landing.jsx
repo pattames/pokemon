@@ -13,6 +13,8 @@ import Battle from "./Battle";
 import AllPokemon from "./AllPokemon";
 import Leaderboard from "./Leaderboard";
 
+import { SelectPokeContext } from "../context/SelectPokeContext";
+
 import Authentication from "./Authentification";
 
 function Landing() {
@@ -21,6 +23,8 @@ function Landing() {
   const [username, setUsername] = useState("");
   const allPokemonsRef = useRef(null);
   const leaderboardRef = useRef(null);
+
+  const { battleCount } = useContext(SelectPokeContext);
 
   useEffect(() => {
     if (!user) {
@@ -53,7 +57,7 @@ function Landing() {
             }
           />
           <MainContent username={user.username} />
-          <MyPokemons currentUser={user.username} />
+          <MyPokemons key={battleCount} currentUser={user.username} />
           <div ref={allPokemonsRef}>
             <AllPokemon />
           </div>
