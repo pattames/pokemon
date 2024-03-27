@@ -16,20 +16,14 @@ const {
 
 const api = express.Router();
 
-api.route("/")
-  .post(createUser)
-  .get(getAllUsers)
-  // .get(getAllPokemons)
-  // .get(getOnePokemon);
+api.route("/").post(createUser).get(getAllUsers);
+// .get(getAllPokemons)
+// .get(getOnePokemon);
 
-api.route("/:id")
-  .get(getUser)
-  .put(updateUser);
+api.route("/:id").get(getUser).put(updateUser);
 
-api.route("/login")
-  .post(loginUser);
+api.route("/login").post(loginUser);
 
-api.route("/signup")
-.post(signupUser);
+api.route("/signup").post(signupUser);
 
 module.exports = api;
