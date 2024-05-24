@@ -5,6 +5,7 @@ import { SelectPokeContext } from "../context/SelectPokeContext";
 
 import GoodPokemon from "./GoodPokemon";
 import BadPokemon from "./BadPokemon";
+import AlertWindow from "./AlertWindow";
 
 function Battle() {
   //Data
@@ -31,6 +32,8 @@ function Battle() {
   const [roundsCompleted, setRoundsCompleted] = useState(0);
   //User
   const [user, setUser] = useState(null);
+  //Alert window
+  const [alertWindow, setAlertWindow] = useState(false);
 
   useEffect(() => {
     if (!user) {
@@ -173,7 +176,10 @@ function Battle() {
             setUser(updatedUser);
             // Call updateUser function to update the user's pokemons on the server
             updateUser(updatedUser);
-            alert("You win! New pokemon added");
+            setUserPokemon(false);
+            setOpponentPokemon(false);
+            // alert("You win! New pokemon added");
+            setAlertWindow(true);
           }
         } else {
           alert("You lose :(");
@@ -205,7 +211,6 @@ function Battle() {
   return (
     <>
       <div className={styles.masterContainer}>
-        {/* <GoodPokemon /> */}
         <div className={styles.battle_container}>
           {userPokemon && opponentPokemon && (
             <div className={styles.battle_component}>
@@ -268,7 +273,7 @@ function Battle() {
             </div>
           )}
         </div>
-        {/* <BadPokemon /> */}
+        {alertWindow && <AlertWindow />}
       </div>
     </>
   );
